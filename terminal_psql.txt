@@ -1,0 +1,729 @@
+camper: /project$ echo hello SQL
+hello SQL
+camper: /project$ psql --username=freecodecamp --dbname=postgres
+Border style is 2.
+Title is " ".
+Pager usage is off.
+psql (12.17 (Ubuntu 12.17-1.pgdg22.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=> \l
+postgres=>                                List of databases
++-----------+----------+----------+---------+---------+-----------------------+
+|   Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   |
++-----------+----------+----------+---------+---------+-----------------------+
+| postgres  | postgres | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| template0 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|           |          |          |         |         | postgres=CTc/postgres |
+| template1 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|           |          |          |         |         | postgres=CTc/postgres |
++-----------+----------+----------+---------+---------+-----------------------+
+(3 rows)
+
+CREATE DATA
+postgres-> CREATE DATABASE students;
+ERROR:  syntax error at or near "CREATE"
+LINE 2: CREATE DATABASE students;
+        ^
+postgres=> 
+postgres=> CREATE DATABASE students;
+postgres=> CREATE DATABASE
+
+postgres=> \l
+                                 List of databases
++-----------+--------------+----------+---------+---------+-----------------------+
+|   Name    |    Owner     | Encoding | Collate |  Ctype  |   Access privileges   |
++-----------+--------------+----------+---------+---------+-----------------------+
+| postgres  | postgres     | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| students  | freecodecamp | UTF8     | C.UTF-8 | C.UTF-8 |                       |
+| template0 | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|           |              |          |         |         | postgres=CTc/postgres |
+| template1 | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +|
+|           |              |          |         |         | postgres=CTc/postgres |
++-----------+--------------+----------+---------+---------+-----------------------+
+(4 rows)
+
+postgres=> \c students
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "students" as user "freecodecamp".
+students=> CREATE TABLE students();
+students=> CREATE TABLE
+
+students=> CREATE TABLE major();
+CREATE TABLE
+students=> DROP TABLE major
+students-> ;
+DROP TABLE
+students=> CREATE TABLE majors();
+CREATE TABLE
+students=> CREATE TABLE courses();
+students=> CREATE TABLE
+
+students=> CREATE TABLE majors_courses();
+CREATE TABLE
+students=> \d
+students=>                 List of relations
++--------+----------------+-------+--------------+
+| Schema |      Name      | Type  |    Owner     |
++--------+----------------+-------+--------------+
+| public | courses        | table | freecodecamp |
+| public | majors         | table | freecodecamp |
+| public | majors_courses | table | freecodecamp |
+| public | students       | table | freecodecamp |
++--------+----------------+-------+--------------+
+(4 rows)
+
+
+students=> ALTER TABLE students ADD COLUMN student_id SERIAL PRIMARY KEY;
+ALTER TABLE
+students=> ALTER TABLE students ADD COLUMN first_name VARCHAR(50) NOT NULL;
+students=> ALTER TABLE
+
+students=> ALTER TABLE students ADD COLUMN last_name VARCHAR(50) NOT NULL;
+ALTER TABLE
+students=> ALTER TABLE students ADD COLUMN major_id INT;
+ALTER TABLE
+students=> ALTER TABLE students ADD COLUMN gpa NUMERIC(2, 1);
+ALTER TABLE
+students=> \d students;
+                                          Table "public.students"
++------------+-----------------------+-----------+----------+----------------------------------------------+
+|   Column   |         Type          | Collation | Nullable |                   Default                    |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+| student_id | integer               |           | not null | nextval('students_student_id_seq'::regclass) |
+| first_name | character varying(50) |           | not null |                                              |
+| last_name  | character varying(50) |           | not null |                                              |
+| major_id   | integer               |           |          |                                              |
+| gpa        | numeric(2,1)          |           |          |                                              |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (student_id)
+
+students=> ALTER TABLE majors ADD COLUMN major_id SERIAL PRIMARY KEY;
+students=> ALTER TABLE
+
+students=> ALTER TABLE majors ADD COLUMN major VARCHAR(50) NOT NULL;
+students=> ALTER TABLE
+
+students=> \d majors;
+students=>                                         Table "public.majors"
++----------+-----------------------+-----------+----------+------------------------------------------+
+|  Column  |         Type          | Collation | Nullable |                 Default                  |
++----------+-----------------------+-----------+----------+------------------------------------------+
+| major_id | integer               |           | not null | nextval('majors_major_id_seq'::regclass) |
+| major    | character varying(50) |           | not null |                                          |
++----------+-----------------------+-----------+----------+------------------------------------------+
+Indexes:
+    "majors_pkey" PRIMARY KEY, btree (major_id)
+
+
+students=> ALTER TABLE students ADD FOREIGN KEY(major_id) REFERENCES majors(major_id);
+ALTER TABLE
+students=> \d students
+                                          Table "public.students"
++------------+-----------------------+-----------+----------+----------------------------------------------+
+|   Column   |         Type          | Collation | Nullable |                   Default                    |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+| student_id | integer               |           | not null | nextval('students_student_id_seq'::regclass) |
+| first_name | character varying(50) |           | not null |                                              |
+| last_name  | character varying(50) |           | not null |                                              |
+| major_id   | integer               |           |          |                                              |
+| gpa        | numeric(2,1)          |           |          |                                              |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (student_id)
+Foreign-key constraints:
+    "students_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+students=> ALTER TABLE courses ADD COLUMN courses_id SERIAL PRIMARY KEY;
+ALTER TABLE
+students=> DROP TABLE courses_id;
+ERROR:  table "courses_id" does not exist
+students=> ALTER TABLE majors DROP COLUMN courses_id;
+ERROR:  column "courses_id" of relation "majors" does not exist
+students=> ALTER TABLE courses DROP COLUMN courses_id;
+ALTER TABLE
+students=> ALTER TABLE courses ADD COLUMN course_id SERIAL PRIMARY KEY;
+ALTER TABLE
+students=> ALTER TABLE courses ADD COLUMN course VARCHAR(100) NOT NULL;
+ALTER TABLE
+students=> \d courses;
+students=>                                           Table "public.courses"
++-----------+------------------------+-----------+----------+--------------------------------------------+
+|  Column   |          Type          | Collation | Nullable |                  Default                   |
++-----------+------------------------+-----------+----------+--------------------------------------------+
+| course_id | integer                |           | not null | nextval('courses_course_id_seq'::regclass) |
+| course    | character varying(100) |           | not null |                                            |
++-----------+------------------------+-----------+----------+--------------------------------------------+
+Indexes:
+    "courses_pkey" PRIMARY KEY, btree (course_id)
+
+
+students=> ALTER TABLE majors_courses ADD COLUMN major_id INT;
+ALTER TABLE
+students=> ALTER TABLE majors_courses ADD FOREIGN KEY(major_id) REFERENCES majors(major_id);
+ALTER TABLE
+students=> ALTER TABLE courses ADD COLUMN course_id INT;
+ERROR:  column "course_id" of relation "courses" already exists
+students=> ALTER TABLE majors_courses ADD COLUMN course_id INT;
+ALTER TABLE
+students=> ALTER TABLE majors_courses ADD FOREIGN KEY(course_id) REFERENCES courses(course_id);
+students=> ALTER TABLE
+
+students=> \d majors_courses;
+             Table "public.majors_courses"
++-----------+---------+-----------+----------+---------+
+|  Column   |  Type   | Collation | Nullable | Default |
++-----------+---------+-----------+----------+---------+
+| major_id  | integer |           |          |         |
+| course_id | integer |           |          |         |
++-----------+---------+-----------+----------+---------+
+Foreign-key constraints:
+    "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+students=> ALTER TABLE majors_courses ADD PRIMARY KEY(major_id, course_id);
+students=> ALTER TABLE
+
+students=> \d majors_courses;
+             Table "public.majors_courses"
++-----------+---------+-----------+----------+---------+
+|  Column   |  Type   | Collation | Nullable | Default |
++-----------+---------+-----------+----------+---------+
+| major_id  | integer |           | not null |         |
+| course_id | integer |           | not null |         |
++-----------+---------+-----------+----------+---------+
+Indexes:
+    "majors_courses_pkey" PRIMARY KEY, btree (major_id, course_id)
+Foreign-key constraints:
+    "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+students=> \d
+                      List of relations
++--------+-------------------------+----------+--------------+
+| Schema |          Name           |   Type   |    Owner     |
++--------+-------------------------+----------+--------------+
+| public | courses                 | table    | freecodecamp |
+| public | courses_course_id_seq   | sequence | freecodecamp |
+| public | majors                  | table    | freecodecamp |
+| public | majors_courses          | table    | freecodecamp |
+| public | majors_major_id_seq     | sequence | freecodecamp |
+| public | students                | table    | freecodecamp |
+| public | students_student_id_seq | sequence | freecodecamp |
++--------+-------------------------+----------+--------------+
+(7 rows)
+
+students=> \d majors;
+students=>                                         Table "public.majors"
++----------+-----------------------+-----------+----------+------------------------------------------+
+|  Column  |         Type          | Collation | Nullable |                 Default                  |
++----------+-----------------------+-----------+----------+------------------------------------------+
+| major_id | integer               |           | not null | nextval('majors_major_id_seq'::regclass) |
+| major    | character varying(50) |           | not null |                                          |
++----------+-----------------------+-----------+----------+------------------------------------------+
+Indexes:
+    "majors_pkey" PRIMARY KEY, btree (major_id)
+Referenced by:
+    TABLE "majors_courses" CONSTRAINT "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+    TABLE "students" CONSTRAINT "students_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+
+students=> INSERT INTO majors(major) VALUES('Database Administration');
+INSERT 0 1
+students=> SELECT * FROM majors;
+students=>                    
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
++----------+-------------------------+
+(1 row)
+
+
+students=> \d courses;
+                                          Table "public.courses"
++-----------+------------------------+-----------+----------+--------------------------------------------+
+|  Column   |          Type          | Collation | Nullable |                  Default                   |
++-----------+------------------------+-----------+----------+--------------------------------------------+
+| course_id | integer                |           | not null | nextval('courses_course_id_seq'::regclass) |
+| course    | character varying(100) |           | not null |                                            |
++-----------+------------------------+-----------+----------+--------------------------------------------+
+Indexes:
+    "courses_pkey" PRIMARY KEY, btree (course_id)
+Referenced by:
+    TABLE "majors_courses" CONSTRAINT "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+
+students=> INSERT INTO courses(course) VALUES('Data Structures and Algorithms');
+INSERT 0 1
+students=> SELECT * FROM courses;
+students=>                        
++-----------+--------------------------------+
+| course_id |             course             |
++-----------+--------------------------------+
+|         1 | Data Structures and Algorithms |
++-----------+--------------------------------+
+(1 row)
+
+
+students=> \d majors_courses;
+             Table "public.majors_courses"
++-----------+---------+-----------+----------+---------+
+|  Column   |  Type   | Collation | Nullable | Default |
++-----------+---------+-----------+----------+---------+
+| major_id  | integer |           | not null |         |
+| course_id | integer |           | not null |         |
++-----------+---------+-----------+----------+---------+
+Indexes:
+    "majors_courses_pkey" PRIMARY KEY, btree (major_id, course_id)
+Foreign-key constraints:
+    "majors_courses_course_id_fkey" FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    "majors_courses_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+students=> INSERT INTO majors_courses(major_id, course_id) VALUES(1, 1);
+INSERT 0 1
+students=> SELECT * FROM majors_courses;
+            
++----------+-----------+
+| major_id | course_id |
++----------+-----------+
+|        1 |         1 |
++----------+-----------+
+(1 row)
+
+students=> \d students;
+students=>                                           Table "public.students"
++------------+-----------------------+-----------+----------+----------------------------------------------+
+|   Column   |         Type          | Collation | Nullable |                   Default                    |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+| student_id | integer               |           | not null | nextval('students_student_id_seq'::regclass) |
+| first_name | character varying(50) |           | not null |                                              |
+| last_name  | character varying(50) |           | not null |                                              |
+| major_id   | integer               |           |          |                                              |
+| gpa        | numeric(2,1)          |           |          |                                              |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (student_id)
+Foreign-key constraints:
+    "students_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+
+students=> INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('Rhea', 'Kellems', 1, 2.5);
+students=> INSERT 0 1
+
+students=> SELECT * FROM students;
+                            
++------------+------------+-----------+----------+-----+
+| student_id | first_name | last_name | major_id | gpa |
++------------+------------+-----------+----------+-----+
+|          1 | Rhea       | Kellems   |        1 | 2.5 |
++------------+------------+-----------+----------+-----+
+(1 row)
+
+students=> SELECT * FROM majors;
+FATAL:  terminating connection due to administrator command
+SSL connection has been closed unexpectedly
+server closed the connection unexpectedly
+        This probably means the server terminated abnormally
+        before or while processing the request.
+The connection to the server was lost. Attempting reset: Succeeded.
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+students=> SELECT * FROM majors;
+students=>                    
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
+|        2 | major                   |
+|        3 | Web Development         |
++----------+-------------------------+
+(3 rows)
+
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
+|        2 | major                   |
+|        3 | Web Development         |
++----------+-------------------------+
+(3 rows)
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
+|        2 | major                   |
+|        3 | Web Development         |
+|        4 | Data Science            |
+|        5 | Network Engineering     |
++----------+-------------------------+
+(5 rows)
+
+students=> DELETE FROM majors where major_id=2;
+DELETE 1
+students=> DELETE FROM majors where major_id=3;
+students=> DELETE 1
+
+students=> DELETE FROM majors where major_id=4;
+DELETE 1
+students=> DELETE FROM majors where major_id=5;
+students=> DELETE 1
+
+students=> SELECT * FROM majors;
+students=>                    
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
++----------+-------------------------+
+(1 row)
+
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
+|        6 | major                   |
+|        7 | Web Development         |
+|        8 | Data Science            |
++----------+-------------------------+
+(4 rows)
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        1 | Database Administration |
+|        6 | major                   |
+|        7 | Web Development         |
+|        8 | Data Science            |
++----------+-------------------------+
+(4 rows)
+
+students=> TRUNCATE majors;
+ERROR:  cannot truncate a table referenced in a foreign key constraint
+DETAIL:  Table "majors_courses" references "majors".
+HINT:  Truncate table "majors_courses" at the same time, or use TRUNCATE ... CASCADE.
+students=> TRUNCATE majors, students, major_courses;
+ERROR:  relation "major_courses" does not exist
+students=> TRUNCATE majors, students, majors_courses;
+TRUNCATE TABLE
+students=> SELECT * FROM majors;
+          
++----------+-------+
+| major_id | major |
++----------+-------+
++----------+-------+
+(0 rows)
+
+students=> SELECT * FROM majors_courses;
+students=>             
++----------+-----------+
+| major_id | course_id |
++----------+-----------+
++----------+-----------+
+(0 rows)
+
+           SELECT * FROM students;
+                            
++------------+------------+-----------+----------+-----+
+| student_id | first_name | last_name | major_id | gpa |
++------------+------------+-----------+----------+-----+
++------------+------------+-----------+----------+-----+
+(0 rows)
+
+students=> Quit
+camper: /project$ psql --username=freecodecamp --dbname=postgres
+Border style is 2.
+Title is " ".
+Pager usage is off.
+psql (12.17 (Ubuntu 12.17-1.pgdg22.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=> SELECT * FROM courses;
+ERROR:  relation "courses" does not exist
+LINE 1: SELECT * FROM courses;
+                      ^
+postgres=> \c students
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "students" as user "freecodecamp".
+students=> SELECT * FROM courses;
+students=>                        
++-----------+--------------------------------+
+| course_id |             course             |
++-----------+--------------------------------+
+|         1 | Data Structures and Algorithms |
++-----------+--------------------------------+
+(1 row)
+
+
+students=> TRUNCATE courses;
+ERROR:  cannot truncate a table referenced in a foreign key constraint
+DETAIL:  Table "majors_courses" references "courses".
+HINT:  Truncate table "majors_courses" at the same time, or use TRUNCATE ... CASCADE.
+students=> TRUNCATE courses, majors_courses;
+TRUNCATE TABLE
+students=> SELECT * FROM courses;
+students=>            
++-----------+--------+
+| course_id | course |
++-----------+--------+
++-----------+--------+
+(0 rows)
+
+
+students=> SELECT * FROM majors;
+students=>                    
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|        9 | major                   |
+|       10 | Database Administration |
+|       11 | Web Development         |
+|       12 | Data Science            |
++----------+-------------------------+
+(4 rows)
+
+
+students=> TRUNCATE majors;
+ERROR:  cannot truncate a table referenced in a foreign key constraint
+DETAIL:  Table "majors_courses" references "majors".
+HINT:  Truncate table "majors_courses" at the same time, or use TRUNCATE ... CASCADE.
+students=> TRUNCATE majors, mahjors_courses;
+ERROR:  relation "mahjors_courses" does not exist
+students=> TRUNCATE majors, majors_courses;
+ERROR:  cannot truncate a table referenced in a foreign key constraint
+DETAIL:  Table "students" references "majors".
+HINT:  Truncate table "students" at the same time, or use TRUNCATE ... CASCADE.
+students=> TRUNCATE majors, majors_courses, students;
+students=> TRUNCATE TABLE
+
+students=> SELECT * FROM majors;
+          
++----------+-------+
+| major_id | major |
++----------+-------+
++----------+-------+
+(0 rows)
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|       13 | Database Administration |
+|       14 | Web Development         |
+|       15 | Data Science            |
++----------+-------------------------+
+(3 rows)
+
+students=> TRUNCATE majors, majors_courses, students;
+students=> TRUNCATE TABLE
+
+students=> SELECT * FROM majors;
+          
++----------+-------+
+| major_id | major |
++----------+-------+
++----------+-------+
+(0 rows)
+
+students=> TRUNCATE majors, majors_courses, students;
+TRUNCATE TABLE
+students=> SELECT * FROM courses;
+                       
++-----------+--------------------------------+
+| course_id |             course             |
++-----------+--------------------------------+
+|         2 | Data Structures and Algorithms |
+|         3 | Web Programming                |
+|         4 | Database Systems               |
++-----------+--------------------------------+
+(3 rows)
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|       25 | Database Administration |
+|       26 | Web Development         |
+|       27 | Data Science            |
++----------+-------------------------+
+(3 rows)
+
+students=> SELECT * FROM courses;
+                       
++-----------+--------------------------------+
+| course_id |             course             |
++-----------+--------------------------------+
+|         8 | Data Structures and Algorithms |
+|         9 | Web Programming                |
+|        10 | Database Systems               |
++-----------+--------------------------------+
+(3 rows)
+
+students=> SELECT * FROM majors_courses;
+            
++----------+-----------+
+| major_id | course_id |
++----------+-----------+
+|       25 |         8 |
+|       26 |         9 |
+|       25 |        10 |
+|       27 |         8 |
++----------+-----------+
+(4 rows)
+
+students=> \d students;
+                                          Table "public.students"
++------------+-----------------------+-----------+----------+----------------------------------------------+
+|   Column   |         Type          | Collation | Nullable |                   Default                    |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+| student_id | integer               |           | not null | nextval('students_student_id_seq'::regclass) |
+| first_name | character varying(50) |           | not null |                                              |
+| last_name  | character varying(50) |           | not null |                                              |
+| major_id   | integer               |           |          |                                              |
+| gpa        | numeric(2,1)          |           |          |                                              |
++------------+-----------------------+-----------+----------+----------------------------------------------+
+Indexes:
+    "students_pkey" PRIMARY KEY, btree (student_id)
+Foreign-key constraints:
+    "students_major_id_fkey" FOREIGN KEY (major_id) REFERENCES majors(major_id)
+
+students=> SELECT * FROM students;
+                            
++------------+------------+-----------+----------+-----+
+| student_id | first_name | last_name | major_id | gpa |
++------------+------------+-----------+----------+-----+
+|          2 | Rhea       | Kellems   |       37 | 2.5 |
+|          3 | Emma       | Gilbert   |          |     |
+|          4 | Kimberly   | Whitley   |       38 | 3.8 |
+|          5 | Jimmy      | Felipe    |       37 | 3.7 |
++------------+------------+-----------+----------+-----+
+(4 rows)
+
+students=> SELECT * FROM students;
+                              
++------------+------------+--------------+----------+-----+
+| student_id | first_name |  last_name   | major_id | gpa |
++------------+------------+--------------+----------+-----+
+|          6 | Rhea       | Kellems      |       40 | 2.5 |
+|          7 | Emma       | Gilbert      |          |     |
+|          8 | Kimberly   | Whitley      |       41 | 3.8 |
+|          9 | Jimmy      | Felipe       |       40 | 3.7 |
+|         10 | Kyle       | Stimson      |          | 2.8 |
+|         11 | Casares    | Hijo         |       45 | 4.0 |
+|         12 | Noe        | Savage       |          | 3.6 |
+|         13 | Sterling   | Boss         |       45 | 3.9 |
+|         14 | Brian      | Davis        |          | 2.3 |
+|         15 | Kaija      | Uronen       |       45 | 3.7 |
+|         16 | Faye       | Conn         |       45 | 2.1 |
+|         17 | Efren      | Reilly       |       41 | 3.9 |
+|         18 | Danh       | Nhung        |          | 2.4 |
+|         19 | Maxine     | Hagenes      |       40 | 2.9 |
+|         20 | Larry      | Saunders     |       42 | 2.2 |
+|         21 | Karl       | Kuhar        |       41 |     |
+|         22 | Lieke      | Hazenveld    |       45 | 3.5 |
+|         23 | Obie       | Hilpert      |       41 |     |
+|         24 | Peter      | Booysen      |          | 2.9 |
+|         25 | Nathan     | Turner       |       40 | 3.3 |
+|         26 | Gerald     | Osiki        |       42 | 2.2 |
+|         27 | Vanya      | Hassanah     |       45 | 4.0 |
+|         28 | Roxelana   | Florescu     |       40 | 3.2 |
+|         29 | Helene     | Parker       |       42 | 3.4 |
+|         30 | Mariana    | Russel       |       41 | 1.8 |
+|         31 | Ajit       | Dhungel      |          | 3.0 |
+|         32 | Mehdi      | Vandenberghe |       40 | 1.9 |
+|         33 | Dejon      | Howell       |       41 | 4.0 |
+|         34 | Aliya      | Gulgowski    |       46 | 2.6 |
+|         35 | Ana        | Tupajic      |       42 | 3.1 |
+|         36 | Hugo       | Duran        |          | 3.8 |
++------------+------------+--------------+----------+-----+
+(31 rows)
+
+students=> SELECT * FROM majors;
+                   
++----------+-------------------------+
+| major_id |          major          |
++----------+-------------------------+
+|       40 | Database Administration |
+|       41 | Web Development         |
+|       42 | Data Science            |
+|       43 | Network Engineering     |
+|       44 | Computer Programming    |
+|       45 | Game Design             |
+|       46 | System Administration   |
++----------+-------------------------+
+(7 rows)
+
+students=> SELECT * FROM courses;
+students=>                        
++-----------+--------------------------------+
+| course_id |             course             |
++-----------+--------------------------------+
+|        23 | Data Structures and Algorithms |
+|        24 | Web Programming                |
+|        25 | Database Systems               |
+|        26 | Computer Networks              |
+|        27 | SQL                            |
+|        28 | Machine Learning               |
+|        29 | Computer Systems               |
+|        30 | Web Applications               |
+|        31 | Artificial Intelligence        |
+|        32 | Python                         |
+|        33 | Object-Oriented Programming    |
+|        34 | Calculus                       |
+|        35 | Game Architecture              |
+|        36 | Algorithms                     |
+|        37 | UNIX                           |
+|        38 | Server Administration          |
+|        39 | Network Security               |
++-----------+--------------------------------+
+(17 rows)
+
+           SELECT * FROM majors_courses;
+            
++----------+-----------+
+| major_id | course_id |
++----------+-----------+
+|       40 |        23 |
+|       41 |        24 |
+|       40 |        25 |
+|       42 |        23 |
+|       43 |        26 |
+|       40 |        27 |
+|       42 |        28 |
+|       43 |        29 |
+|       44 |        26 |
+|       40 |        30 |
+|       45 |        31 |
+|       42 |        32 |
+|       44 |        33 |
+|       46 |        29 |
+|       45 |        34 |
+|       41 |        23 |
+|       42 |        34 |
+|       41 |        33 |
+|       45 |        35 |
+|       46 |        26 |
+|       45 |        36 |
+|       46 |        37 |
+|       46 |        38 |
+|       44 |        29 |
+|       44 |        32 |
+|       43 |        39 |
+|       41 |        30 |
+|       43 |        36 |
++----------+-----------+
+(28 rows)
