@@ -1,0 +1,832 @@
+camper: /project$ chmod +x insert_data.sh 
+camper: /project$ chmod +x queries.sh 
+camper: /project$ ./insert_data.sh 
+TRUNCATE TABLE
+Inserted into teams by winner, France
+Inserted into teams by opponent, Croatia
+Inserted into game success fully Final - France VS Croatia - 4
+./insert_data.sh: line 59: 2: command not found
+Inserted into teams by winner, Belgium
+Inserted into teams by opponent, England
+Inserted into game success fully Third Place - Belgium VS England - 2
+./insert_data.sh: line 59: 0: command not found
+Inserted into game success fully Semi-Final - Croatia VS England - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into game success fully Semi-Final - France VS Belgium - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Russia
+Inserted into game success fully Quarter-Final - Croatia VS Russia - 3
+./insert_data.sh: line 59: 2: command not found
+Inserted into teams by opponent, Sweden
+Inserted into game success fully Quarter-Final - England VS Sweden - 2
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Brazil
+Inserted into game success fully Quarter-Final - Belgium VS Brazil - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Uruguay
+Inserted into game success fully Quarter-Final - France VS Uruguay - 2
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Colombia
+Inserted into game success fully Eighth-Final - England VS Colombia - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Switzerland
+Inserted into game success fully Eighth-Final - Sweden VS Switzerland - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Japan
+Inserted into game success fully Eighth-Final - Belgium VS Japan - 3
+./insert_data.sh: line 59: 2: command not found
+Inserted into teams by opponent, Mexico
+Inserted into game success fully Eighth-Final - Brazil VS Mexico - 2
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Denmark
+Inserted into game success fully Eighth-Final - Croatia VS Denmark - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Spain
+Inserted into game success fully Eighth-Final - Russia VS Spain - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Portugal
+Inserted into game success fully Eighth-Final - Uruguay VS Portugal - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Argentina
+Inserted into game success fully Eighth-Final - France VS Argentina - 4
+./insert_data.sh: line 59: 3: command not found
+Inserted into teams by winner, Germany
+Inserted into game success fully Final - Germany VS Argentina - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by winner, Netherlands
+Inserted into game success fully Third Place - Netherlands VS Brazil - 3
+./insert_data.sh: line 59: 0: command not found
+Inserted into game success fully Semi-Final - Argentina VS Netherlands - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into game success fully Semi-Final - Germany VS Brazil - 7
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Costa Rica
+Inserted into game success fully Quarter-Final - Netherlands VS Costa Rica - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into game success fully Quarter-Final - Argentina VS Belgium - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into game success fully Quarter-Final - Brazil VS Colombia - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into game success fully Quarter-Final - Germany VS France - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Chile
+Inserted into game success fully Eighth-Final - Brazil VS Chile - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into game success fully Eighth-Final - Colombia VS Uruguay - 2
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Nigeria
+Inserted into game success fully Eighth-Final - France VS Nigeria - 2
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, Algeria
+Inserted into game success fully Eighth-Final - Germany VS Algeria - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into game success fully Eighth-Final - Netherlands VS Mexico - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into teams by opponent, Greece
+Inserted into game success fully Eighth-Final - Costa Rica VS Greece - 2
+./insert_data.sh: line 59: 1: command not found
+Inserted into game success fully Eighth-Final - Argentina VS Switzerland - 1
+./insert_data.sh: line 59: 0: command not found
+Inserted into teams by opponent, United States
+Inserted into game success fully Eighth-Final - Belgium VS United States - 2
+./insert_data.sh: line 59: 1: command not found
+camper: /project$ ./insert_data.sh 
+TRUNCATE TABLE
+Inserted into teams by winner, France
+Inserted into teams by opponent, Croatia
+Inserted into game success fully Final - France VS Croatia GOALS: 4 - 2
+Inserted into teams by winner, Belgium
+Inserted into teams by opponent, England
+Inserted into game success fully Third Place - Belgium VS England GOALS: 2 - 0
+Inserted into game success fully Semi-Final - Croatia VS England GOALS: 2 - 1
+Inserted into game success fully Semi-Final - France VS Belgium GOALS: 1 - 0
+Inserted into teams by opponent, Russia
+Inserted into game success fully Quarter-Final - Croatia VS Russia GOALS: 3 - 2
+Inserted into teams by opponent, Sweden
+Inserted into game success fully Quarter-Final - England VS Sweden GOALS: 2 - 0
+Inserted into teams by opponent, Brazil
+Inserted into game success fully Quarter-Final - Belgium VS Brazil GOALS: 2 - 1
+Inserted into teams by opponent, Uruguay
+Inserted into game success fully Quarter-Final - France VS Uruguay GOALS: 2 - 0
+Inserted into teams by opponent, Colombia
+Inserted into game success fully Eighth-Final - England VS Colombia GOALS: 2 - 1
+Inserted into teams by opponent, Switzerland
+Inserted into game success fully Eighth-Final - Sweden VS Switzerland GOALS: 1 - 0
+Inserted into teams by opponent, Japan
+Inserted into game success fully Eighth-Final - Belgium VS Japan GOALS: 3 - 2
+Inserted into teams by opponent, Mexico
+Inserted into game success fully Eighth-Final - Brazil VS Mexico GOALS: 2 - 0
+Inserted into teams by opponent, Denmark
+Inserted into game success fully Eighth-Final - Croatia VS Denmark GOALS: 2 - 1
+Inserted into teams by opponent, Spain
+Inserted into game success fully Eighth-Final - Russia VS Spain GOALS: 2 - 1
+Inserted into teams by opponent, Portugal
+Inserted into game success fully Eighth-Final - Uruguay VS Portugal GOALS: 2 - 1
+Inserted into teams by opponent, Argentina
+Inserted into game success fully Eighth-Final - France VS Argentina GOALS: 4 - 3
+Inserted into teams by winner, Germany
+Inserted into game success fully Final - Germany VS Argentina GOALS: 1 - 0
+Inserted into teams by winner, Netherlands
+Inserted into game success fully Third Place - Netherlands VS Brazil GOALS: 3 - 0
+Inserted into game success fully Semi-Final - Argentina VS Netherlands GOALS: 1 - 0
+Inserted into game success fully Semi-Final - Germany VS Brazil GOALS: 7 - 1
+Inserted into teams by opponent, Costa Rica
+Inserted into game success fully Quarter-Final - Netherlands VS Costa Rica GOALS: 1 - 0
+Inserted into game success fully Quarter-Final - Argentina VS Belgium GOALS: 1 - 0
+Inserted into game success fully Quarter-Final - Brazil VS Colombia GOALS: 2 - 1
+Inserted into game success fully Quarter-Final - Germany VS France GOALS: 1 - 0
+Inserted into teams by opponent, Chile
+Inserted into game success fully Eighth-Final - Brazil VS Chile GOALS: 2 - 1
+Inserted into game success fully Eighth-Final - Colombia VS Uruguay GOALS: 2 - 0
+Inserted into teams by opponent, Nigeria
+Inserted into game success fully Eighth-Final - France VS Nigeria GOALS: 2 - 0
+Inserted into teams by opponent, Algeria
+Inserted into game success fully Eighth-Final - Germany VS Algeria GOALS: 2 - 1
+Inserted into game success fully Eighth-Final - Netherlands VS Mexico GOALS: 2 - 1
+Inserted into teams by opponent, Greece
+Inserted into game success fully Eighth-Final - Costa Rica VS Greece GOALS: 2 - 1
+Inserted into game success fully Eighth-Final - Argentina VS Switzerland GOALS: 1 - 0
+Inserted into teams by opponent, United States
+Inserted into game success fully Eighth-Final - Belgium VS United States GOALS: 2 - 1
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+
+
+Average number of goals in all games from both teams:
+
+
+Most goals scored in a single game by one team:
+
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+
+
+Average number of goals in all games from both teams:
+
+
+Most goals scored in a single game by one team:
+
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+
+
+Most goals scored in a single game by one team:
+
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+ERROR:  function avg(numeric, numeric) does not exist
+LINE 1: SELECT AVG(AVG(winner_goals), AVG(opponent_goals)) from game...
+               ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+Most goals scored in a single game by one team:
+
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+1.40625000000000000000
+
+Most goals scored in a single game by one team:
+
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.81250000000000000000
+
+Most goals scored in a single game by one team:
+
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.81250000000000000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.81250000000000000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+6
+
+Winner of the 2018 tournament team name:
+
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ 
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.81250000000000000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+6
+
+Winner of the 2018 tournament team name:
+France
+
+List of teams who played in the 2014 'Eighth-Final' round:
+
+
+List of unique winning team names in the whole data set:
+
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.81250000000000000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+6
+
+Winner of the 2018 tournament team name:
+France
+
+List of teams who played in the 2014 'Eighth-Final' round:
+Algeria
+Argentina
+Belgium
+Brazil
+Chile
+Colombia
+Costa Rica
+France
+Germany
+Greece
+Mexico
+Netherlands
+Nigeria
+Switzerland
+United States
+Uruguay
+
+List of unique winning team names in the whole data set:
+Argentina
+Belgium
+Brazil
+Colombia
+Costa Rica
+Croatia
+England
+France
+Germany
+Netherlands
+Russia
+Sweden
+Uruguay
+
+Year and team name of all the champions:
+
+
+List of teams that start with 'Co':
+Colombia
+Costa Rica
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.81250000000000000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+6
+
+Winner of the 2018 tournament team name:
+France
+
+List of teams who played in the 2014 'Eighth-Final' round:
+Algeria
+Argentina
+Belgium
+Brazil
+Chile
+Colombia
+Costa Rica
+France
+Germany
+Greece
+Mexico
+Netherlands
+Nigeria
+Switzerland
+United States
+Uruguay
+
+List of unique winning team names in the whole data set:
+Argentina
+Belgium
+Brazil
+Colombia
+Costa Rica
+Croatia
+England
+France
+Germany
+Netherlands
+Russia
+Sweden
+Uruguay
+
+Year and team name of all the champions:
+2014|Germany
+2018|France
+
+List of teams that start with 'Co':
+Colombia
+Costa Rica
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.812500000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+6
+
+Winner of the 2018 tournament team name:
+France
+
+List of teams who played in the 2014 'Eighth-Final' round:
+Algeria
+Argentina
+Belgium
+Brazil
+Chile
+Colombia
+Costa Rica
+France
+Germany
+Greece
+Mexico
+Netherlands
+Nigeria
+Switzerland
+United States
+Uruguay
+
+List of unique winning team names in the whole data set:
+Argentina
+Belgium
+Brazil
+Colombia
+Costa Rica
+Croatia
+England
+France
+Germany
+Netherlands
+Russia
+Sweden
+Uruguay
+
+Year and team name of all the champions:
+2014|Germany
+2018|France
+
+List of teams that start with 'Co':
+Colombia
+Costa Rica
+camper: /project$ ./queries.sh 
+
+Total number of goals in all games from winning teams:
+68
+
+Total number of goals in all games from both teams combined:
+90
+
+Average number of goals in all games from the winning teams:
+2.1250000000000000
+
+Average number of goals in all games from the winning teams rounded to two decimal places:
+2.13
+
+Average number of goals in all games from both teams:
+2.8125000000000000
+
+Most goals scored in a single game by one team:
+7
+
+Number of games where the winning team scored more than two goals:
+6
+
+Winner of the 2018 tournament team name:
+France
+
+List of teams who played in the 2014 'Eighth-Final' round:
+Algeria
+Argentina
+Belgium
+Brazil
+Chile
+Colombia
+Costa Rica
+France
+Germany
+Greece
+Mexico
+Netherlands
+Nigeria
+Switzerland
+United States
+Uruguay
+
+List of unique winning team names in the whole data set:
+Argentina
+Belgium
+Brazil
+Colombia
+Costa Rica
+Croatia
+England
+France
+Germany
+Netherlands
+Russia
+Sweden
+Uruguay
+
+Year and team name of all the champions:
+2014|Germany
+2018|France
+
+List of teams that start with 'Co':
+Colombia
+Costa Rica
+camper: /project$ mkdir upgit
+camper: /project$ ls
+expected_output.txt  games.csv  insert_data.sh  queries.sh  upgit
+camper: /project$ cp expected_output.txt upgit/
+camper: /project$ cp games.csv upgit/
+camper: /project$ cp insert_data.sh 
+cp: missing destination file operand after 'insert_data.sh'
+Try 'cp --help' for more information.
+camper: /project$ cp insert_data.sh upgit/
+camper: /project$ cp queries.sh upgit/
+camper: /project$ ls
+expected_output.txt  games.csv  insert_data.sh  queries.sh  upgit
+camper: /project$ ls upgit/
+expected_output.txt  games.csv  insert_data.sh  queries.sh
+camper: /project$ cd upgit/
+camper: /upgit$ touch terminal_bash.txt
+camper: /upgit$ touch terminal_psql.txt
+camper: /upgit$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint:   git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint:   git branch -m <name>
+Initialized empty Git repository in /workspace/project/upgit/.git/
+camper: /upgit$ git branch -m submissionworld
+camper: /upgit$ git remote add origin ;
+usage: git remote add [<options>] <name> <url>
+
+    -f, --[no-]fetch      fetch the remote branches
+    --[no-]tags           import all tags and associated objects when fetching
+                          or do not fetch any tag at all (--no-tags)
+    -t, --[no-]track <branch>
+                          branch(es) to track
+    -m, --[no-]master <branch>
+                          master branch
+    --[no-]mirror[=(push|fetch)]
+                          set up remote as a mirror to push to or fetch from
+
+camper: /upgit$ git remote add origin 
+usage: git remote add [<options>] <name> <url>
+
+    -f, --[no-]fetch      fetch the remote branches
+    --[no-]tags           import all tags and associated objects when fetching
+                          or do not fetch any tag at all (--no-tags)
+    -t, --[no-]track <branch>
+                          branch(es) to track
+    -m, --[no-]master <branch>
+                          master branch
+    --[no-]mirror[=(push|fetch)]
+                          set up remote as a mirror to push to or fetch from
+
+camper: /upgit$ git remote add origin https://github.com/AktoFredy/freecodecamp_calestial_bodies.git
+camper: /upgit$ git add .
+camper: /upgit$ git commit -m "added for submission world cup back up file"
+[submissionworld (root-commit) 55defcb] added for submission world cup back up file
+ 6 files changed, 203 insertions(+)
+ create mode 100644 expected_output.txt
+ create mode 100644 games.csv
+ create mode 100755 insert_data.sh
+ create mode 100755 queries.sh
+ create mode 100644 terminal_bash.txt
+ create mode 100644 terminal_psql.txt
+camper: /upgit$ git push -u origin submissionworld
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 2.72 KiB | 2.72 MiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'submissionworld' on GitHub by visiting:
+remote:      https://github.com/AktoFredy/freecodecamp_calestial_bodies/pull/new/submissionworld
+remote: 
+To https://github.com/AktoFredy/freecodecamp_calestial_bodies.git
+ * [new branch]      submissionworld -> submissionworld
+branch 'submissionworld' set up to track 'origin/submissionworld'.

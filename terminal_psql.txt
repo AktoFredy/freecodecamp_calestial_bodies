@@ -1,0 +1,820 @@
+camper: /project$ psql --username=freecodecamp --dbname=postgres
+psql (12.17 (Ubuntu 12.17-1.pgdg22.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=> \l
+                               List of databases
+     Name     |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   
+--------------+----------+----------+---------+---------+-----------------------
+ postgres     | postgres | UTF8     | C.UTF-8 | C.UTF-8 | 
+ template0    | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+              |          |          |         |         | postgres=CTc/postgres
+ template1    | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+              |          |          |         |         | postgres=CTc/postgres
+ worldcuptest | postgres | UTF8     | C.UTF-8 | C.UTF-8 | 
+(4 rows)
+
+postgres=> CREATE DATABASE worldcup;
+CREATE DATABASE
+postgres=> \c worldcup
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "worldcup" as user "freecodecamp".
+worldcup=> \d
+Did not find any relations.
+worldcup=> CREATE TABLE teams(team_id SERIAL PRIMARY KEY, name VARCHAR(30) UNIQUE)
+worldcup-> \D
+invalid command \D
+Try \? for help.
+worldcup-> \d
+Did not find any relations.
+worldcup-> \l
+                                 List of databases
+     Name     |    Owner     | Encoding | Collate |  Ctype  |   Access privileges   
+--------------+--------------+----------+---------+---------+-----------------------
+ postgres     | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | 
+ template0    | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+              |              |          |         |         | postgres=CTc/postgres
+ template1    | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+              |              |          |         |         | postgres=CTc/postgres
+ worldcup     | freecodecamp | UTF8     | C.UTF-8 | C.UTF-8 | 
+ worldcuptest | postgres     | UTF8     | C.UTF-8 | C.UTF-8 | 
+(5 rows)
+
+worldcup-> \d
+Did not find any relations.
+worldcup-> \d worldcup
+Did not find any relation named "worldcup".
+worldcup-> \d teams
+Did not find any relation named "teams".
+worldcup-> \d
+Did not find any relations.
+worldcup-> ;
+CREATE TABLE
+worldcup=> \d
+                  List of relations
+ Schema |       Name        |   Type   |    Owner     
+--------+-------------------+----------+--------------
+ public | teams             | table    | freecodecamp
+ public | teams_team_id_seq | sequence | freecodecamp
+(2 rows)
+
+worldcup=> CREATE TABLE games(game_id SERIAL PRIMARY KEY, year INT NOT NULL, round VARCHAR(100) NOT NULL, winner_goals INT NOT NULL, opponent_goals INT NOT NULL );
+CREATE TABLE
+worldcup=> \d
+                  List of relations
+ Schema |       Name        |   Type   |    Owner     
+--------+-------------------+----------+--------------
+ public | games             | table    | freecodecamp
+ public | games_game_id_seq | sequence | freecodecamp
+ public | teams             | table    | freecodecamp
+ public | teams_team_id_seq | sequence | freecodecamp
+(4 rows)
+
+worldcup=> \d teams;
+                                      Table "public.teams"
+ Column  |         Type          | Collation | Nullable |                Default                 
+---------+-----------------------+-----------+----------+----------------------------------------
+ team_id | integer               |           | not null | nextval('teams_team_id_seq'::regclass)
+ name    | character varying(30) |           |          | 
+Indexes:
+    "teams_pkey" PRIMARY KEY, btree (team_id)
+    "teams_name_key" UNIQUE CONSTRAINT, btree (name)
+
+worldcup=> ALTER TABLE teams CONSTRAINT SET teams(name) NOT NULL;
+ERROR:  syntax error at or near "CONSTRAINT"
+LINE 1: ALTER TABLE teams CONSTRAINT SET teams(name) NOT NULL;
+                          ^
+worldcup=> ALTER TABLE teams teams(name) NOT NULL;
+ERROR:  syntax error at or near "teams"
+LINE 1: ALTER TABLE teams teams(name) NOT NULL;
+                          ^
+worldcup=> ALTER TABLE teams CONSTRAINT SET name NOT NULL;
+ERROR:  syntax error at or near "CONSTRAINT"
+LINE 1: ALTER TABLE teams CONSTRAINT SET name NOT NULL;
+                          ^
+worldcup=> ALTER TABLE teams ALTER COLUMN name SET NOT NULL;
+ALTER TABLE
+worldcup=> \d teams;
+                                      Table "public.teams"
+ Column  |         Type          | Collation | Nullable |                Default                 
+---------+-----------------------+-----------+----------+----------------------------------------
+ team_id | integer               |           | not null | nextval('teams_team_id_seq'::regclass)
+ name    | character varying(30) |           | not null | 
+Indexes:
+    "teams_pkey" PRIMARY KEY, btree (team_id)
+    "teams_name_key" UNIQUE CONSTRAINT, btree (name)
+
+worldcup=> \d games
+
+[1]+  Stopped                 psql --username=freecodecamp --dbname=postgres
+camper: /project$ psql --username=freecodecamp --dbname=postgres
+psql (12.17 (Ubuntu 12.17-1.pgdg22.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=> \c worldcup
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "worldcup" as user "freecodecamp".
+worldcup=> \d
+                  List of relations
+ Schema |       Name        |   Type   |    Owner     
+--------+-------------------+----------+--------------
+ public | games             | table    | freecodecamp
+ public | games_game_id_seq | sequence | freecodecamp
+ public | teams             | table    | freecodecamp
+ public | teams_team_id_seq | sequence | freecodecamp
+(4 rows)
+
+worldcup=> \d games;
+
+[2]+  Stopped                 psql --username=freecodecamp --dbname=postgres
+camper: /project$ psql --username=freecodecamp --dbname=postgres
+psql (12.17 (Ubuntu 12.17-1.pgdg22.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=> \d
+Did not find any relations.
+postgres=> \c worldcup
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "worldcup" as user "freecodecamp".
+worldcup=> ;
+worldcup=> \d
+                  List of relations
+ Schema |       Name        |   Type   |    Owner     
+--------+-------------------+----------+--------------
+ public | games             | table    | freecodecamp
+ public | games_game_id_seq | sequence | freecodecamp
+ public | teams             | table    | freecodecamp
+ public | teams_team_id_seq | sequence | freecodecamp
+(4 rows)
+
+worldcup=> ALTER TABLE games ADD COLUMN winner_id INT NOT NULL REFERENCES teams(team_id);
+ALTER TABLE
+worldcup=> \d
+                  List of relations
+ Schema |       Name        |   Type   |    Owner     
+--------+-------------------+----------+--------------
+ public | games             | table    | freecodecamp
+ public | games_game_id_seq | sequence | freecodecamp
+ public | teams             | table    | freecodecamp
+ public | teams_team_id_seq | sequence | freecodecamp
+(4 rows)
+
+worldcup=> ALTER TABLE games ADD COLUMN opponent_id INT NOT NULL REFERENCES teams(team_id);
+ALTER TABLE
+worldcup=> \d games;
+                                          Table "public.games"
+     Column     |          Type          | Collation | Nullable |                Default                 
+----------------+------------------------+-----------+----------+----------------------------------------
+ game_id        | integer                |           | not null | nextval('games_game_id_seq'::regclass)
+ year           | integer                |           | not null | 
+ round          | character varying(100) |           | not null | 
+ winner_goals   | integer                |           | not null | 
+ opponent_goals | integer                |           | not null | 
+ winner_id      | integer                |           | not null | 
+ opponent_id    | integer                |           | not null | 
+Indexes:
+    "games_pkey" PRIMARY KEY, btree (game_id)
+Foreign-key constraints:
+    "games_opponent_id_fkey" FOREIGN KEY (opponent_id) REFERENCES teams(team_id)
+    "games_winner_id_fkey" FOREIGN KEY (winner_id) REFERENCES teams(team_id)
+
+worldcup=> \d teams
+                                      Table "public.teams"
+ Column  |         Type          | Collation | Nullable |                Default                 
+---------+-----------------------+-----------+----------+----------------------------------------
+ team_id | integer               |           | not null | nextval('teams_team_id_seq'::regclass)
+ name    | character varying(30) |           | not null | 
+Indexes:
+    "teams_pkey" PRIMARY KEY, btree (team_id)
+    "teams_name_key" UNIQUE CONSTRAINT, btree (name)
+Referenced by:
+    TABLE "games" CONSTRAINT "games_opponent_id_fkey" FOREIGN KEY (opponent_id) REFERENCES teams(team_id)
+    TABLE "games" CONSTRAINT "games_winner_id_fkey" FOREIGN KEY (winner_id) REFERENCES teams(team_id)
+
+worldcup=> SELECT * FROM TEAMS;
+ team_id |     name      
+---------+---------------
+      25 | France
+      26 | Croatia
+      27 | Belgium
+      28 | England
+      29 | Russia
+      30 | Sweden
+      31 | Brazil
+      32 | Uruguay
+      33 | Colombia
+      34 | Switzerland
+      35 | Japan
+      36 | Mexico
+      37 | Denmark
+      38 | Spain
+      39 | Portugal
+      40 | Argentina
+      41 | Germany
+      42 | Netherlands
+      43 | Costa Rica
+      44 | Chile
+      45 | Nigeria
+      46 | Algeria
+      47 | Greece
+      48 | United States
+(24 rows)
+
+worldcup=> SELECT * FROM GAMESS;
+ERROR:  relation "gamess" does not exist
+LINE 1: SELECT * FROM GAMESS;
+                      ^
+worldcup=> SELECT * FROM GAMES;
+ game_id | year |     round     | winner_goals | opponent_goals | winner_id | opponent_id 
+---------+------+---------------+--------------+----------------+-----------+-------------
+      33 | 2018 | Final         |            4 |              2 |        25 |          26
+      34 | 2018 | Third Place   |            2 |              0 |        27 |          28
+      35 | 2018 | Semi-Final    |            2 |              1 |        26 |          28
+      36 | 2018 | Semi-Final    |            1 |              0 |        25 |          27
+      37 | 2018 | Quarter-Final |            3 |              2 |        26 |          29
+      38 | 2018 | Quarter-Final |            2 |              0 |        28 |          30
+      39 | 2018 | Quarter-Final |            2 |              1 |        27 |          31
+      40 | 2018 | Quarter-Final |            2 |              0 |        25 |          32
+      41 | 2018 | Eighth-Final  |            2 |              1 |        28 |          33
+      42 | 2018 | Eighth-Final  |            1 |              0 |        30 |          34
+      43 | 2018 | Eighth-Final  |            3 |              2 |        27 |          35
+      44 | 2018 | Eighth-Final  |            2 |              0 |        31 |          36
+      45 | 2018 | Eighth-Final  |            2 |              1 |        26 |          37
+      46 | 2018 | Eighth-Final  |            2 |              1 |        29 |          38
+      47 | 2018 | Eighth-Final  |            2 |              1 |        32 |          39
+      48 | 2018 | Eighth-Final  |            4 |              3 |        25 |          40
+      49 | 2014 | Final         |            1 |              0 |        41 |          40
+      50 | 2014 | Third Place   |            3 |              0 |        42 |          31
+      51 | 2014 | Semi-Final    |            1 |              0 |        40 |          42
+      52 | 2014 | Semi-Final    |            7 |              1 |        41 |          31
+      53 | 2014 | Quarter-Final |            1 |              0 |        42 |          43
+      54 | 2014 | Quarter-Final |            1 |              0 |        40 |          27
+      55 | 2014 | Quarter-Final |            2 |              1 |        31 |          33
+      56 | 2014 | Quarter-Final |            1 |              0 |        41 |          25
+      57 | 2014 | Eighth-Final  |            2 |              1 |        31 |          44
+      58 | 2014 | Eighth-Final  |            2 |              0 |        33 |          32
+      59 | 2014 | Eighth-Final  |            2 |              0 |        25 |          45
+      60 | 2014 | Eighth-Final  |            2 |              1 |        41 |          46
+      61 | 2014 | Eighth-Final  |            2 |              1 |        42 |          36
+      62 | 2014 | Eighth-Final  |            2 |              1 |        43 |          47
+      63 | 2014 | Eighth-Final  |            1 |              0 |        40 |          34
+      64 | 2014 | Eighth-Final  |            2 |              1 |        27 |          48
+(32 rows)
+
+worldcup=> SELECT * FROM games FULL JOIN teams ON(winner_id=teams_id, opponent_id=teams_id);
+ERROR:  column "teams_id" does not exist
+LINE 1: SELECT * FROM games FULL JOIN teams ON(winner_id=teams_id, o...
+                                                         ^
+HINT:  Perhaps you meant to reference the column "teams.team_id".
+worldcup=> SELECT * FROM games FULL JOIN teams ON(winner_id=team_id, opponent_id=teams_id);
+ERROR:  column "teams_id" does not exist
+LINE 1: ...FULL JOIN teams ON(winner_id=team_id, opponent_id=teams_id);
+                                                             ^
+HINT:  Perhaps you meant to reference the column "teams.team_id".
+worldcup=> SELECT * FROM games FULL JOIN teams ON(winner_id=team_id, opponent_id=team_id);
+ERROR:  argument of JOIN/ON must be type boolean, not type record
+LINE 1: SELECT * FROM games FULL JOIN teams ON(winner_id=team_id, op...
+                                              ^
+worldcup=> SELECT * FROM games FULL JOIN teams ON(winner_id=team_id AND opponent_id=team_id);
+
+[3]+  Stopped                 psql --username=freecodecamp --dbname=postgres
+camper: /project$ psql --username=freecodecamp --dbname=postgres
+psql (12.17 (Ubuntu 12.17-1.pgdg22.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+postgres=> \c worldcup
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "worldcup" as user "freecodecamp".
+worldcup=> SELECT * FROM games;
+ game_id | year |     round     | winner_goals | opponent_goals | winner_id | opponent_id 
+---------+------+---------------+--------------+----------------+-----------+-------------
+      33 | 2018 | Final         |            4 |              2 |        25 |          26
+      34 | 2018 | Third Place   |            2 |              0 |        27 |          28
+      35 | 2018 | Semi-Final    |            2 |              1 |        26 |          28
+      36 | 2018 | Semi-Final    |            1 |              0 |        25 |          27
+      37 | 2018 | Quarter-Final |            3 |              2 |        26 |          29
+      38 | 2018 | Quarter-Final |            2 |              0 |        28 |          30
+      39 | 2018 | Quarter-Final |            2 |              1 |        27 |          31
+      40 | 2018 | Quarter-Final |            2 |              0 |        25 |          32
+      41 | 2018 | Eighth-Final  |            2 |              1 |        28 |          33
+      42 | 2018 | Eighth-Final  |            1 |              0 |        30 |          34
+      43 | 2018 | Eighth-Final  |            3 |              2 |        27 |          35
+      44 | 2018 | Eighth-Final  |            2 |              0 |        31 |          36
+      45 | 2018 | Eighth-Final  |            2 |              1 |        26 |          37
+      46 | 2018 | Eighth-Final  |            2 |              1 |        29 |          38
+      47 | 2018 | Eighth-Final  |            2 |              1 |        32 |          39
+      48 | 2018 | Eighth-Final  |            4 |              3 |        25 |          40
+      49 | 2014 | Final         |            1 |              0 |        41 |          40
+      50 | 2014 | Third Place   |            3 |              0 |        42 |          31
+      51 | 2014 | Semi-Final    |            1 |              0 |        40 |          42
+      52 | 2014 | Semi-Final    |            7 |              1 |        41 |          31
+      53 | 2014 | Quarter-Final |            1 |              0 |        42 |          43
+      54 | 2014 | Quarter-Final |            1 |              0 |        40 |          27
+      55 | 2014 | Quarter-Final |            2 |              1 |        31 |          33
+      56 | 2014 | Quarter-Final |            1 |              0 |        41 |          25
+      57 | 2014 | Eighth-Final  |            2 |              1 |        31 |          44
+      58 | 2014 | Eighth-Final  |            2 |              0 |        33 |          32
+      59 | 2014 | Eighth-Final  |            2 |              0 |        25 |          45
+      60 | 2014 | Eighth-Final  |            2 |              1 |        41 |          46
+      61 | 2014 | Eighth-Final  |            2 |              1 |        42 |          36
+      62 | 2014 | Eighth-Final  |            2 |              1 |        43 |          47
+      63 | 2014 | Eighth-Final  |            1 |              0 |        40 |          34
+      64 | 2014 | Eighth-Final  |            2 |              1 |        27 |          48
+(32 rows)
+
+worldcup=> SELECT * FROM teams INNER JOIN games ON(team_id=winner_id) INNER JOIN games ON (team_id=opponent_id);
+ERROR:  table name "games" specified more than once
+worldcup=> SELECT * FROM teams INNER JOIN games ON(team_id=winner_id) INNER JOIN ON (team_id=opponent_id);
+
+ERROR:  syntax error at or near "ON"
+LINE 1: ...INNER JOIN games ON(team_id=winner_id) INNER JOIN ON (team_i...
+                                                             ^
+worldcup=> SELECT * FROM teams INNER JOIN games ON(team_id=winner_id)  ON (team_id=opponent_id);
+ERROR:  syntax error at or near "ON"
+LINE 1: ...ROM teams INNER JOIN games ON(team_id=winner_id)  ON (team_i...
+                                                             ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team FROM games AS g INNER
+JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id);
+ year |     round     | winner_team | opponent_team 
+------+---------------+-------------+---------------
+ 2014 | Eighth-Final  | France      | Nigeria
+ 2018 | Eighth-Final  | France      | Argentina
+ 2018 | Quarter-Final | France      | Uruguay
+ 2018 | Semi-Final    | France      | Belgium
+ 2018 | Final         | France      | Croatia
+ 2018 | Eighth-Final  | Croatia     | Denmark
+ 2018 | Quarter-Final | Croatia     | Russia
+ 2018 | Semi-Final    | Croatia     | England
+ 2014 | Eighth-Final  | Belgium     | United States
+ 2018 | Eighth-Final  | Belgium     | Japan
+ 2018 | Quarter-Final | Belgium     | Brazil
+ 2018 | Third Place   | Belgium     | England
+ 2018 | Eighth-Final  | England     | Colombia
+ 2018 | Quarter-Final | England     | Sweden
+ 2018 | Eighth-Final  | Russia      | Spain
+ 2018 | Eighth-Final  | Sweden      | Switzerland
+ 2014 | Eighth-Final  | Brazil      | Chile
+ 2018 | Eighth-Final  | Brazil      | Mexico
+ 2014 | Quarter-Final | Brazil      | Colombia
+ 2018 | Eighth-Final  | Uruguay     | Portugal
+ 2014 | Eighth-Final  | Colombia    | Uruguay
+ 2014 | Semi-Final    | Argentina   | Netherlands
+ 2014 | Eighth-Final  | Argentina   | Switzerland
+ 2014 | Quarter-Final | Argentina   | Belgium
+ 2014 | Eighth-Final  | Germany     | Algeria
+ 2014 | Final         | Germany     | Argentina
+ 2014 | Semi-Final    | Germany     | Brazil
+ 2014 | Quarter-Final | Germany     | France
+ 2014 | Quarter-Final | Netherlands | Costa Rica
+ 2014 | Eighth-Final  | Netherlands | Mexico
+ 2014 | Third Place   | Netherlands | Brazil
+ 2014 | Eighth-Final  | Costa Rica  | Greece
+(32 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNE                                                                             p
+po
+ year |     round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+---------------+-------------+---------------+--------------+----------------
+ 2014 | Eighth-Final  | France      | Nigeria       |            2 |              0
+ 2018 | Eighth-Final  | France      | Argentina     |            4 |              3
+ 2018 | Quarter-Final | France      | Uruguay       |            2 |              0
+ 2018 | Semi-Final    | France      | Belgium       |            1 |              0
+ 2018 | Final         | France      | Croatia       |            4 |              2
+ 2018 | Eighth-Final  | Croatia     | Denmark       |            2 |              1
+ 2018 | Quarter-Final | Croatia     | Russia        |            3 |              2
+ 2018 | Semi-Final    | Croatia     | England       |            2 |              1
+ 2014 | Eighth-Final  | Belgium     | United States |            2 |              1
+ 2018 | Eighth-Final  | Belgium     | Japan         |            3 |              2
+ 2018 | Quarter-Final | Belgium     | Brazil        |            2 |              1
+ 2018 | Third Place   | Belgium     | England       |            2 |              0
+ 2018 | Eighth-Final  | England     | Colombia      |            2 |              1
+ 2018 | Quarter-Final | England     | Sweden        |            2 |              0
+ 2018 | Eighth-Final  | Russia      | Spain         |            2 |              1
+ 2018 | Eighth-Final  | Sweden      | Switzerland   |            1 |              0
+ 2014 | Eighth-Final  | Brazil      | Chile         |            2 |              1
+ 2018 | Eighth-Final  | Brazil      | Mexico        |            2 |              0
+ 2014 | Quarter-Final | Brazil      | Colombia      |            2 |              1
+ 2018 | Eighth-Final  | Uruguay     | Portugal      |            2 |              1
+ 2014 | Eighth-Final  | Colombia    | Uruguay       |            2 |              0
+ 2014 | Semi-Final    | Argentina   | Netherlands   |            1 |              0
+ 2014 | Eighth-Final  | Argentina   | Switzerland   |            1 |              0
+ 2014 | Quarter-Final | Argentina   | Belgium       |            1 |              0
+ 2014 | Eighth-Final  | Germany     | Algeria       |            2 |              1
+ 2014 | Final         | Germany     | Argentina     |            1 |              0
+ 2014 | Semi-Final    | Germany     | Brazil        |            7 |              1
+ 2014 | Quarter-Final | Germany     | France        |            1 |              0
+ 2014 | Quarter-Final | Netherlands | Costa Rica    |            1 |              0
+ 2014 | Eighth-Final  | Netherlands | Mexico        |            2 |              1
+ 2014 | Third Place   | Netherlands | Brazil        |            3 |              0
+ 2014 | Eighth-Final  | Costa Rica  | Greece        |            2 |              1
+(32 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018;
+ year |     round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+---------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final  | France      | Argentina     |            4 |              3
+ 2018 | Quarter-Final | France      | Uruguay       |            2 |              0
+ 2018 | Semi-Final    | France      | Belgium       |            1 |              0
+ 2018 | Final         | France      | Croatia       |            4 |              2
+ 2018 | Eighth-Final  | Croatia     | Denmark       |            2 |              1
+ 2018 | Quarter-Final | Croatia     | Russia        |            3 |              2
+ 2018 | Semi-Final    | Croatia     | England       |            2 |              1
+ 2018 | Eighth-Final  | Belgium     | Japan         |            3 |              2
+ 2018 | Quarter-Final | Belgium     | Brazil        |            2 |              1
+ 2018 | Third Place   | Belgium     | England       |            2 |              0
+ 2018 | Eighth-Final  | England     | Colombia      |            2 |              1
+ 2018 | Quarter-Final | England     | Sweden        |            2 |              0
+ 2018 | Eighth-Final  | Russia      | Spain         |            2 |              1
+ 2018 | Eighth-Final  | Sweden      | Switzerland   |            1 |              0
+ 2018 | Eighth-Final  | Brazil      | Mexico        |            2 |              0
+ 2018 | Eighth-Final  | Uruguay     | Portugal      |            2 |              1
+(16 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eight-Final';
+ year | round | winner_team | opponent_team | winner_goals | opponent_goals 
+------+-------+-------------+---------------+--------------+----------------
+(0 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final';
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | France      | Argentina     |            4 |              3
+ 2018 | Eighth-Final | Croatia     | Denmark       |            2 |              1
+ 2018 | Eighth-Final | Belgium     | Japan         |            3 |              2
+ 2018 | Eighth-Final | England     | Colombia      |            2 |              1
+ 2018 | Eighth-Final | Russia      | Spain         |            2 |              1
+ 2018 | Eighth-Final | Sweden      | Switzerland   |            1 |              0
+ 2018 | Eighth-Final | Brazil      | Mexico        |            2 |              0
+ 2018 | Eighth-Final | Uruguay     | Portugal      |            2 |              1
+(8 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eight-Final' AND game_id=MAX(game_id);
+ERROR:  aggregate functions are not allowed in WHERE
+LINE 1: ...ERE YEAR=2018 AND round='Eight-Final' AND game_id=MAX(game_i...
+                                                             ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eight-Final' LIMIT 1);
+ERROR:  syntax error at or near ")"
+LINE 1: ...2.team_id) WHERE YEAR=2018 AND round='Eight-Final' LIMIT 1);
+                                                                     ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eight-Final' LIMIT 1;
+ year | round | winner_team | opponent_team | winner_goals | opponent_goals 
+------+-------+-------------+---------------+--------------+----------------
+(0 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' LIMIT 1;
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | England     | Colombia      |            2 |              1
+(1 row)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final';
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | France      | Argentina     |            4 |              3
+ 2018 | Eighth-Final | Croatia     | Denmark       |            2 |              1
+ 2018 | Eighth-Final | Belgium     | Japan         |            3 |              2
+ 2018 | Eighth-Final | England     | Colombia      |            2 |              1
+ 2018 | Eighth-Final | Russia      | Spain         |            2 |              1
+ 2018 | Eighth-Final | Sweden      | Switzerland   |            1 |              0
+ 2018 | Eighth-Final | Brazil      | Mexico        |            2 |              0
+ 2018 | Eighth-Final | Uruguay     | Portugal      |            2 |              1
+(8 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASC LIMIT 1;
+ERROR:  syntax error at or near "ASC"
+LINE 1: ...WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASC LIMIT ...
+                                                             ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASCENDING LIMIT 1;
+ERROR:  column "ascending" does not exist
+LINE 1: ...WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASCENDING ...
+                                                             ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASC1;
+ERROR:  column "asc1" does not exist
+LINE 1: ..._id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASC1;
+                                                                  ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASC;
+ERROR:  syntax error at or near "ASC"
+LINE 1: ...m_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY ASC;
+                                                                   ^
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id ASC;
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | England     | Colombia      |            2 |              1
+ 2018 | Eighth-Final | Sweden      | Switzerland   |            1 |              0
+ 2018 | Eighth-Final | Belgium     | Japan         |            3 |              2
+ 2018 | Eighth-Final | Brazil      | Mexico        |            2 |              0
+ 2018 | Eighth-Final | Croatia     | Denmark       |            2 |              1
+ 2018 | Eighth-Final | Russia      | Spain         |            2 |              1
+ 2018 | Eighth-Final | Uruguay     | Portugal      |            2 |              1
+ 2018 | Eighth-Final | France      | Argentina     |            4 |              3
+(8 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id DESC;
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | France      | Argentina     |            4 |              3
+ 2018 | Eighth-Final | Uruguay     | Portugal      |            2 |              1
+ 2018 | Eighth-Final | Russia      | Spain         |            2 |              1
+ 2018 | Eighth-Final | Croatia     | Denmark       |            2 |              1
+ 2018 | Eighth-Final | Brazil      | Mexico        |            2 |              0
+ 2018 | Eighth-Final | Belgium     | Japan         |            3 |              2
+ 2018 | Eighth-Final | Sweden      | Switzerland   |            1 |              0
+ 2018 | Eighth-Final | England     | Colombia      |            2 |              1
+(8 rows)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id DESC limit 1;
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | France      | Argentina     |            4 |              3
+(1 row)
+
+worldcup=> SELECT g.year, g.round, t1.name as winner_team, t2.name as opponent_team, winner_goals, opponent_goals FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id DESC LIMIT 1;
+ year |    round     | winner_team | opponent_team | winner_goals | opponent_goals 
+------+--------------+-------------+---------------+--------------+----------------
+ 2018 | Eighth-Final | France      | Argentina     |            4 |              3
+(1 row)
+
+worldcup=> SELECT t1.name FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN te
+ams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id DESC LIM
+IT 1;
+  name  
+--------
+ France
+(1 row)
+
+worldcup=> SELECT DISTINCT(t1.name) FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN te
+worldcup-> ams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2014 AND round='Eighth-Final';
+ERROR:  syntax error at or near "AS"
+LINE 2: ams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2014 AND ...
+            ^
+worldcup=> 
+worldcup=> SELECT DISTINCT(t1.name) FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2014 AND round='Eighth-Final';
+    name     
+-------------
+ Argentina
+ Belgium
+ Brazil
+ Colombia
+ Costa Rica
+ France
+ Germany
+ Netherlands
+(8 rows)
+
+worldcup=> SELECT DISTINCT(t1.name + t2.name) FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) INNER JOIN teams AS t2 ON (g.opponent_id=t2.team_id) WHERE YEAR=2014 AND round='Eighth-Final';
+ERROR:  operator does not exist: character varying + character varying
+LINE 1: SELECT DISTINCT(t1.name + t2.name) FROM games AS g INNER JOI...
+                                ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+worldcup=> SELECT CONCAT(t1.name, ' vs. ', t2.name) AS team_pair
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id)
+worldcup-> INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final'
+worldcup-> GROUP BY g.id;
+ERROR:  column g.id does not exist
+LINE 6: GROUP BY g.id;
+                 ^
+worldcup=> SELECT CONCAT(t1.name, ' vs. ', t2.name) AS team_pair
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id)
+worldcup-> INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final'
+worldcup-> GROUP BY g.game_id;
+ERROR:  column "t1.name" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT CONCAT(t1.name, ' vs. ', t2.name) AS team_pair
+                      ^
+worldcup=> SELECT DISTINCT t1.name AS team_name
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final'
+worldcup-> 
+worldcup-> UNION ALL
+worldcup-> 
+worldcup-> SELECT DISTINCT t2.name AS team_name
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final';
+   team_name   
+---------------
+ Argentina
+ Belgium
+ Brazil
+ Colombia
+ Costa Rica
+ France
+ Germany
+ Netherlands
+ Algeria
+ Chile
+ Greece
+ Mexico
+ Nigeria
+ Switzerland
+ United States
+ Uruguay
+(16 rows)
+
+worldcup=> SELECT DISTINCT t1.name AS team_name
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final'
+worldcup-> 
+worldcup-> UNION ALL
+worldcup-> 
+worldcup-> SELECT DISTINCT t2.name AS team_name
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final' ORDER BY name ;
+ERROR:  column "name" does not exist
+LINE 9: WHERE YEAR = 2014 AND round = 'Eighth-Final' ORDER BY name ;
+                                                              ^
+worldcup=> SELECT DISTINCT t1.name AS team_name
+FROM games AS g
+INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id)
+WHERE YEAR = 2014 AND round = 'Eighth-Final'
+UNION ALL
+SELECT DISTINCT t2.name AS team_name
+FROM games AS g
+INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id)
+WHERE YEAR = 2014 AND round = 'Eighth-Final' ORDER BY team_name ASC ;
+worldcup-> ;
+ERROR:  missing FROM-clause entry for table "t1"
+LINE 1: SELECT DISTINCT t1.name AS team_name
+                        ^
+worldcup=> SELECT DISTINCT t1.name AS team_name
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final'
+worldcup-> 
+worldcup-> UNION ALL
+worldcup-> 
+worldcup-> SELECT DISTINCT t2.name AS team_name
+worldcup-> FROM games AS g
+worldcup-> INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id)
+worldcup-> WHERE YEAR = 2014 AND round = 'Eighth-Final' ORDER BY team_name ASC;
+   team_name   
+---------------
+ Algeria
+ Argentina
+ Belgium
+ Brazil
+ Chile
+ Colombia
+ Costa Rica
+ France
+ Germany
+ Greece
+ Mexico
+ Netherlands
+ Nigeria
+ Switzerland
+ United States
+ Uruguay
+(16 rows)
+
+worldcup=> SELECT DISTINCT t1.name AS team_name FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id = t1.team_id) WHERE YEAR = 2014 AND round = 'Eighth-Final' UNION ALL SELECT DISTINCT t2.name AS team_name FROM games AS g INNER JOIN teams AS t2 ON (g.opponent_id = t2.team_id) WHERE YEAR = 2014 AND round = 'Eighth-Final' ORDER BY team_name ASC;
+   team_name   
+---------------
+ Algeria
+ Argentina
+ Belgium
+ Brazil
+ Chile
+ Colombia
+ Costa Rica
+ France
+ Germany
+ Greece
+ Mexico
+ Netherlands
+ Nigeria
+ Switzerland
+ United States
+ Uruguay
+(16 rows)
+
+worldcup=> SELECT DISTINCT(name) FROM games INNER JOIN teams (winner_id=team_id);
+ERROR:  syntax error at or near ";"
+LINE 1: ...TINCT(name) FROM games INNER JOIN teams (winner_id=team_id);
+                                                                      ^
+worldcup=> SELECT DISTINCT(name) FROM games INNER JOIN teams ON(winner_id=team_id);
+    name     
+-------------
+ Uruguay
+ Russia
+ Sweden
+ Netherlands
+ Brazil
+ Germany
+ Colombia
+ Argentina
+ Croatia
+ England
+ Belgium
+ France
+ Costa Rica
+(13 rows)
+
+worldcup=> SELECT DISTINCT(name) FROM games INNER JOIN teams (winner_id=team_id) ORDER BY name ASC;
+ERROR:  syntax error at or near "ORDER"
+LINE 1: ...) FROM games INNER JOIN teams (winner_id=team_id) ORDER BY n...
+                                                             ^
+worldcup=> SELECT DISTINCT(name) FROM games INNER JOIN teams ON(winner_id=team_id) ORDER BY name ASC;
+    name     
+-------------
+ Argentina
+ Belgium
+ Brazil
+ Colombia
+ Costa Rica
+ Croatia
+ England
+ France
+ Germany
+ Netherlands
+ Russia
+ Sweden
+ Uruguay
+(13 rows)
+
+worldcup=> SELECT name FROM teams WHERE name LIKE '%Co'
+worldcup-> ;
+ name 
+------
+(0 rows)
+
+worldcup=> SELECT name FROM teams WHERE name LIKE 'Co%';
+    name    
+------------
+ Colombia
+ Costa Rica
+(2 rows)
+
+worldcup=> SELECT t1.name FROM games AS g INNER JOIN teams AS t1 ON (g.winner_id=t1.team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id DESC LIMIT 1
+worldcup-> ;
+  name  
+--------
+ France
+(1 row)
+
+worldcup=> SELECT name FROM games INNER JOIN teams ON (winner_id=team_id) WHERE YEAR=2018 AND round='Eighth-Final' ORDER BY game_id DESC LIMIT 1
+worldcup-> ;
+  name  
+--------
+ France
+(1 row)
+
+worldcup=> SELECT name FROM games INNER JOIN teams ON (winner_id=team_id) WHERE round='Eighth-Final' ORDER BY game_id DESC LIMIT 1
+worldcup-> ;
+  name   
+---------
+ Belgium
+(1 row)
+
+worldcup=> SELECT name FROM games INNER JOIN teams ON (winner_id=team_id) WHERE round='Eighth-Final' ORDER BY game_id DESC;
+    name     
+-------------
+ Belgium
+ Argentina
+ Costa Rica
+ Netherlands
+ Germany
+ France
+ Colombia
+ Brazil
+ France
+ Uruguay
+ Russia
+ Croatia
+ Brazil
+ Belgium
+ Sweden
+ England
+(16 rows)
+
+worldcup=> SELECT name FROM games INNER JOIN teams ON (winner_id=team_id) WHERE round='Final' ORDER BY gam
+e_id DESC;
+  name   
+---------
+ Germany
+ France
+(2 rows)
+
+worldcup=> SELECT year, name FROM games INNER JOIN teams ON (winner_id=team_id) WHERE round='Final' ORDER
+BY game_id DESC;
+ year |  name   
+------+---------
+ 2014 | Germany
+ 2018 | France
+(2 rows)
+
+worldcup=> SELECT name FROM games INNER JOIN teams ON (winner_id=team_id) WHERE YEAR=2018 AND round='Final';
+  name  
+--------
+ France
+(1 row)
